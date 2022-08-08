@@ -48,7 +48,7 @@ const Register = () => {
             required
             ref={registerPassword}
           />
-          <input type="submit" value="Valider" />
+          <input type="submit" value="Envoyer" />
         </form>
       </div>
     </div>
