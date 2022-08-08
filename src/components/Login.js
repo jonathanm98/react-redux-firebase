@@ -1,10 +1,11 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { auth } from "../utils/firebase.config";
 
 const Login = () => {
   const loginEmail = useRef();
   const loginPassword = useRef();
+  const [error, setError] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,9 +16,10 @@ const Login = () => {
         loginEmail.current.value,
         loginPassword.current.value
       );
-      console.log(user);
+      setError(false);
     } catch (err) {
       console.log(err);
+      setError(true);
     }
   };
 
@@ -34,6 +36,7 @@ const Login = () => {
             ref={loginPassword}
           />
           <input type="submit" value="Envoyer" />
+          <span>{error && "Email ou mot de passe incorrect"}</span>
         </form>
       </div>
     </div>
